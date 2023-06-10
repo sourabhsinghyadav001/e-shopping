@@ -29,7 +29,7 @@ export function Home() {
           value={searchKeyword}
           placeholder="Search By Name"
           onChange={(event) =>
-            setSearchKeyword(event.currentTarget.value.toLocaleLowerCase())
+            setSearchKeyword(event.currentTarget.value.toLowerCase())
           }
         />
       </div>
