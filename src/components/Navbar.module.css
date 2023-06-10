@@ -1,0 +1,29 @@
+.container,
+.links,
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 18px;
+}
+.container {
+  height: 86px;
+  padding: 0 7%;
+  color: rgb(85, 26, 139);
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 15px 20px;
+}
+
+.links {
+  gap: 50px;
+}
+.link {
+  font-weight: 700;
+  color: rgb(112, 100, 229);
+}
+.link img {
+  height: 38px;
+}
+.link:hover {
+  color: rgb(34, 73, 87);
+}

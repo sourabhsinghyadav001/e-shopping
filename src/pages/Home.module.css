@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  margin-top: 15px;
+}
+.left {
+  width: 25%;
+}
+.right {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 6.333%;
+  row-gap: 35px;
+}
+
+.filter {
+  background: #f0f0fc;
+  border-radius: 10px;
+  left: 0;
+  padding: 1rem;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 25%;
+}

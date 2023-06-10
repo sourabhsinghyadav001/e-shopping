@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap");
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: "Quicksand";
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  cursor: pointer;
+  text-decoration: none;
+}
