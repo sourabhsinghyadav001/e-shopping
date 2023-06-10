@@ -8,7 +8,7 @@ export function Home() {
   const categories = useRef({});
   const [filterValue, setFilterValue] = useState(70000);
   const [filterCategories, setFilterCategories] = useState({});
-  
+  const [searchKeyword, setSearchKeyword] = useState("");
   useEffect(() => {
     async function getData() {
       const docRef = doc(db, "products", "all");
@@ -22,53 +22,75 @@ export function Home() {
     getData();
   }, []);
   return (
-    <div className={classes.container}>
-      <div className={classes.left}>
-        <aside className={classes.filter}>
-          <h2>Filter</h2>
-          <div>{filterValue}</div>
-          <input
-            type="range"
-            min={0}
-            max={70000}
-            onChange={(event) => setFilterValue(event.currentTarget.value)}
-            value={filterValue}
-          />
-          {Object.keys(categories.current).map((key) => (
-            <div style={{ textAlign: "left", marginBottom: "1rem" }} key={key}>
-              <input
-                type="checkbox"
-                onChange={(event) => {
-                  if (event.currentTarget.checked) {
-                    setFilterCategories((prev) => ({ ...prev, [key]: true }));
-                  } else {
-                    const { [key]: _, ...rest } = filterCategories;
-                    setFilterCategories(rest);
-                  }
-                }}
-              />
-              {key}
-            </div>
+    <>
+      <div className={classes.search}>
+        <input
+          className={classes.searchInput}
+          value={searchKeyword}
+          placeholder="Search By Name"
+          onChange={(event) =>
+            setSearchKeyword(event.currentTarget.value.toLocaleLowerCase())
+          }
+        />
+      </div>
+      <div className={classes.container}>
+        <div className={classes.left}>
+          <aside className={classes.filter}>
+            <h2>Filter</h2>
+            <div>{filterValue}</div>
+            <input
+              type="range"
+              min={0}
+              max={70000}
+              onChange={(event) =>
+                setFilterValue(parseInt(event.currentTarget.value))
+              }
+              value={filterValue}
+            />
+            {Object.keys(categories.current).map((key) => (
+              <div
+                style={{ textAlign: "left", marginBottom: "1rem" }}
+                key={key}
+              >
+                <input
+                  type="checkbox"
+                  onChange={(event) => {
+                    if (event.currentTarget.checked) {
+                      setFilterCategories((prev) => ({ ...prev, [key]: true }));
+                    } else {
+                      const { [key]: _, ...rest } = filterCategories;
+                      setFilterCategories(rest);
+                    }
+                  }}
+                />
+                {key}
+              </div>
+            ))}
+          </aside>
+        </div>
+        <div className={classes.right}>
+          {(Object.keys(filterCategories).length
+            ? products.filter(
+                (product) =>
+                  product.price <= filterValue &&
+                  filterCategories[product.category] &&
+                  product.title.toLowerCase().includes(searchKeyword)
+              )
+            : products.filter(
+                (product) =>
+                  product.price <= filterValue &&
+                  product.title.toLowerCase().includes(searchKeyword)
+              )
+          ).map((element) => (
+            <Card
+              key={element.id}
+              src={element.image}
+              details={element.title}
+              price={element.price}
+            />
           ))}
-        </aside>
+        </div>
       </div>
-      <div className={classes.right}>
-        {(Object.keys(filterCategories).length
-          ? products.filter(
-              (product) =>
-                product.price <= filterValue &&
-                filterCategories[product.category]
-            )
-          : products.filter((product) => product.price <= filterValue)
-        ).map((element) => (
-          <Card
-            key={element.id}
-            src={element.image}
-            details={element.title}
-            price={element.price}
-          />
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
