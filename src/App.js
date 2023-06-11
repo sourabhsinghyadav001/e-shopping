@@ -4,7 +4,9 @@ import { Home } from "./pages/Home";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import { Navbar } from "./components/Navbar";
-import { SignOut   } from "./pages/SignOut";
+import { SignOut } from "./pages/SignOut";
+import { Cart } from "./pages/Cart";
+import { Orders } from "./pages/Orders";
 import { UserDataProvider } from "./context/userContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
         path: "signout",
         element: <SignOut />,
         children: [{ index: true, element: <Home /> }],
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "orders",
+        element: <Orders />,
       },
     ],
   },

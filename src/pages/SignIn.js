@@ -1,12 +1,12 @@
 import classes from "./SignUp.module.css";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { useUserContext } from "../context/userContext";
 import { Link, useNavigate } from "react-router-dom";
 export function SignIn() {
   const [emailRef, passwordRef] = [useRef(null), useRef(null)];
-  const { setLogged, setEmail } = useUserContext();
+  const {logged, setLogged, setEmail } = useUserContext();
   const navigate = useNavigate();
   const signin = async (event) => {
     event.preventDefault();
@@ -46,7 +46,7 @@ export function SignIn() {
             Sign In
           </button>
         </form>
-        <Link class={classes.link} to={"/signup"}>
+        <Link className={classes.link} to={"/signup"}>
           Or SignUp instead
         </Link>
       </div>

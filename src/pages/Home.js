@@ -3,12 +3,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebaseSettings";
 import classes from "./Home.module.css";
 import { Card } from "../components/Card";
+import { GridLoader } from "react-spinners";
 export function Home() {
   const [products, setProducts] = useState([]);
   const categories = useRef({});
   const [filterValue, setFilterValue] = useState(70000);
   const [filterCategories, setFilterCategories] = useState({});
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function getData() {
       const docRef = doc(db, "products", "all");
@@ -18,9 +20,21 @@ export function Home() {
         return e;
       });
       setProducts(result);
+      setLoading(false);
     }
     getData();
   }, []);
+  if (loading)
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: "calc(50vh - 86px)",
+        }}
+      >
+        <GridLoader />
+      </div>
+    );
   return (
     <>
       <div className={classes.search}>
@@ -87,6 +101,8 @@ export function Home() {
               src={element.image}
               details={element.title}
               price={element.price}
+              id={element.id}
+              addToCartMode={true}
             />
           ))}
         </div>

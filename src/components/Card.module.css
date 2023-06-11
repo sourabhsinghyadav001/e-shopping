@@ -61,3 +61,28 @@
   color: #7064e5;
   cursor: pointer;
 }
+.plusMinus {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.plusMinus img {
+  cursor: pointer;
+}
+.remove {
+  background: #f14444;
+  border: 1px solid red;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 20px;
+  padding: 0.5rem ;
+  transition: all 0.3s ease-in-out;
+}
+.remove:hover {
+  background-color: initial;
+  border: 1px solid #f14444;
+  color: #f14444;
+  cursor: pointer;
+}

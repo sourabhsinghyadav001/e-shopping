@@ -43,3 +43,18 @@
   padding: 12px;
   width: 250px;
 }
+.purchase {
+  background: #7064e5;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 1.2em !important;
+  padding: 0.4em !important;
+  width: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.purchase:hover {
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
+}
