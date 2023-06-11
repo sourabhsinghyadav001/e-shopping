@@ -27,6 +27,8 @@ export function SignUp() {
     } catch (err) {
       if (err.code === "auth/email-already-in-use")
         toast("Email already in use");
+      else if (err.code === "auth/invalid-email") toast("Invalid email format");
+      else toast("Something went wrong!");
     }
   };
   return (

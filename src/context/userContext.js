@@ -10,7 +10,6 @@ export function useUserContext() {
 export function UserDataProvider({ children }) {
   const [logged, setLogged] = useState(false);
   const [cart, setCart] = useState({});
-  const [orders, setOrders] = useState({});
   const [email, setEmail] = useState("");
   let unsubCart = null;
   useEffect(() => {
@@ -41,8 +40,6 @@ export function UserDataProvider({ children }) {
         setLogged,
         cart,
         updateCart,
-        orders,
-        setOrders,
         email,
         setEmail,
       }}
