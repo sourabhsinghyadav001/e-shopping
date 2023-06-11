@@ -1,6 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import classes from "./Navbar.module.css";
+import { useUserContext } from "../context/userContext";
 export function Navbar() {
+  const { logged } = useUserContext();
   return (
     <>
       <div className={classes.container}>
@@ -10,18 +12,27 @@ export function Navbar() {
             <img src="/home.png" alt="home"></img>
             Home
           </Link>
-          <Link className={classes.link} to="/orders">
-            <img src="/orders.png" alt="home"></img>
-            My orders
-          </Link>
-          <Link className={classes.link} to="/cart">
-            <img src="/cart.png" alt="home"></img>
-            Cart
-          </Link>
-          <Link className={classes.link} to="/logout">
-            <img src="/logout.png" alt="home"></img>
-            Logout
-          </Link>
+          {logged ? (
+            <>
+              <Link className={classes.link} to="/orders">
+                <img src="/orders.png" alt="orders"></img>
+                My orders
+              </Link>
+              <Link className={classes.link} to="/cart">
+                <img src="/cart.png" alt="cart"></img>
+                Cart
+              </Link>
+              <Link className={classes.link} to="/signout">
+                <img src="/logout.png" alt="logout"></img>
+                Logout
+              </Link>
+            </>
+          ) : (
+            <Link className={classes.link} to="/login">
+              <img src="/signin.png" alt="login"></img>
+              SignIn
+            </Link>
+          )}
         </div>
       </div>
       <Outlet />
