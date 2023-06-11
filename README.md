@@ -10,6 +10,10 @@ All info about the project is given in this readme file, after reading this file
 - The detection of tags like men's clothing, jewelery etc. are actually detected from data and shown as filter !
 - Used Firebase Authentication for signIn/signUp.
 
+## Used chrome to build the project.  
+
+- I used latest chrome version to build and test the app.
+
 ## Packages used
 
 - react-router-dom: for routing
